@@ -14,9 +14,8 @@
  *= require furima/application
  *= require_tree ./furima/shared
  *= require_tree ./furima/items
- *  require_tree ./furima/orders   /* ← 必要になったら「*=」を戻す */
- *  require_tree ./furima/user     /* ← 必要になったら「*=」を戻す */
- *= require_self
+ *  require_tree ./furima/orders
+ *=  require_tree ./furima/user
 */
 
 /* ここから下は動作確認用の一時スタイル（あとで消してOK） */
