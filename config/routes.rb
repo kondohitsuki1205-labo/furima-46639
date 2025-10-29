@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'orders/create'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "items#index"
-  resources :items, only: %i[index new create show destroy edit]
+  resources :items, only: %i[index new create show edit update destroy] do
    resources :orders, only: %i[new create]
+  end
 end

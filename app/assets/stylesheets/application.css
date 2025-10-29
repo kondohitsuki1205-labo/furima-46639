@@ -14,7 +14,7 @@
  *= require furima/application
  *= require_tree ./furima/shared
  *= require_tree ./furima/items
- *  require_tree ./furima/orders
+ *=  require_tree ./furima/orders
  *=  require_tree ./furima/user
 */
 

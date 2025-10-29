@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :items, dependent: :destroy
+  has_many :orders, dependent: :nullify
   
   # 文字種の正規表現
   ZENKAKU        = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
