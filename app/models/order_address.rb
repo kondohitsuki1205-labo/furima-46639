@@ -16,15 +16,15 @@ class OrderAddress
   end
 
   def save
-    order = Order.create!(user_id:, item_id:)
-    Address.create!(
-      order_id: order.id,
-      postal_code:,
-      prefecture_id:,
-      city:,
-      block:,
-      building:,
-      phone_number:
-    )
+  order = Order.create!(user_id:, item_id:)
+  Address.create!(
+    order_id:      order.id,
+    postal_code:   postal_code,
+    prefecture_id: prefecture_id,
+    city:          city,
+    block:         block,
+    building:      building,
+    phone_number:  phone_number
+   )
   end
 end

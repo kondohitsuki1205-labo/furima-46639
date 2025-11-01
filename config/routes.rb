@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   root "items#index"
   resources :items, only: %i[index new create show edit update destroy] do
    resources :orders, only: %i[new create]
+   get 'orders', to: redirect { |params, _req| "/items/#{params[:item_id]}/orders/new" }  # ← 追加
   end
 end

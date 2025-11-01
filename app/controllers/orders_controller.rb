@@ -29,16 +29,18 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :block, :building, :phone_number)
-          .merge(user_id: current_user.id, item_id: @item.id, token: params[:order_address][:token])
-  end
+  params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :block, :building, :phone_number)
+        .merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+end
 
   def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-    Payjp::Charge.create(
-      amount: @item.price,
-      card: order_params[:token],
-      currency: 'jpy'
-    )
-  end
+  return if Rails.env.development?  # ← 開発では決済呼ばず先に進む
+
+  Payjp.api_key = Rails.application.credentials.dig(:payjp, :secret_key)
+  Payjp::Charge.create(
+    amount:   @item.price,
+    card:     order_params[:token],
+    currency: 'jpy'
+  )
+end
 end
